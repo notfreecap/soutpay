@@ -1,2 +1,2 @@
 # soutpay
-spring boot micro-services application
+spring boot microservices application

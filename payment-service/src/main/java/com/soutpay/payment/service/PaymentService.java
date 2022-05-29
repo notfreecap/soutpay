@@ -8,6 +8,8 @@ public interface PaymentService {
 
     List<Payment> getAllPayments();
 
+    Payment findByIdPayment(Long id);
+
     Payment getPayment(Payment payment);
 
     Payment savePayment(Payment payment);

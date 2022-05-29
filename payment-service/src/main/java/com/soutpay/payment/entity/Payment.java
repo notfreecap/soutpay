@@ -1,6 +1,7 @@
 package com.soutpay.payment.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.soutpay.payment.model.Product;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,4 +38,8 @@ public class Payment {
     @JoinColumn(name = "user_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private User user;
+
+    // dato no transaccional
+    @Transient
+    private Product product;
 }

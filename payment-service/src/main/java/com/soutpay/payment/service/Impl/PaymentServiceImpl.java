@@ -1,6 +1,8 @@
 package com.soutpay.payment.service.Impl;
 
+import com.soutpay.payment.client.ProductClient;
 import com.soutpay.payment.entity.Payment;
+import com.soutpay.payment.model.Product;
 import com.soutpay.payment.repository.PaymentRepository;
 import com.soutpay.payment.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +16,23 @@ public class PaymentServiceImpl implements PaymentService {
     @Autowired
     PaymentRepository paymentRepository;
 
+
+    @Autowired
+    ProductClient productClient;
+
     @Override
     public List<Payment> getAllPayments() {
         return paymentRepository.findAll();
+    }
+
+    @Override
+    public Payment findByIdPayment(Long id) {
+        Payment payment = paymentRepository.findById(id).orElse(null);
+        if (payment != null){
+            Product product = productClient.getProductById(1L).getBody();
+            payment.setProduct(product);
+        }
+        return paymentRepository.findById(id).orElse(null);
     }
 
     @Override

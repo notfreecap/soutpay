@@ -16,8 +16,7 @@ spring:
         - id: inventory-service
           uri: lb://inventory-service
           predicates:
-            - Path=/products/**
-            - Path=/storagecellar/**
+            - Path=/products/**,/storagecellar/**
         - id: payment-service
           uri: lb://payment-service
           predicates:
